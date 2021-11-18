@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter } from "react-router-dom";
 import Router from '../Router';
 import { GlobalStyle, theme, ThemeProviderComponent } from '../style';
+import { Header } from '../components'
 
 function App() {
   return (
@@ -9,7 +10,7 @@ function App() {
       <GlobalStyle />
       <BrowserRouter>
         <Router />
-        Bejamas
+        <Header />
       </BrowserRouter>
     </ThemeProviderComponent>
   );

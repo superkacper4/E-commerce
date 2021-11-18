@@ -1,12 +1,9 @@
 const theme = {
     colors: {
-        primary: '#8bb6e0',
-        secondary: '#e39494',
-        third: '#363636',
+        primary: 'white',
+        secondary: 'black',
+        third: '#E4E4E4',
         text: 'black',
-        green: '#C4D6AE',
-        lightRed: '#C85B5B',
-        darkRed: '#E35555'
     },
     fontSize: {
         xs: '0.5rem',
