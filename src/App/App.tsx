@@ -3,15 +3,16 @@ import { BrowserRouter } from "react-router-dom";
 import Router from '../Router';
 import { GlobalStyle, theme, ThemeProviderComponent } from '../style';
 import { Header } from '../components'
+import { CartProvider } from '../Context/context';
 
 function App() {
   return (
     <ThemeProviderComponent>
-      <GlobalStyle />
-      <BrowserRouter>
-        <Router />
+      <CartProvider>
+        <GlobalStyle />
         <Header />
-      </BrowserRouter>
+        <Router />
+      </CartProvider>
     </ThemeProviderComponent>
   );
 }

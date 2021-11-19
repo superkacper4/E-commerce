@@ -1,4 +1,4 @@
-import { Main } from '../views'
+import { Main, Product } from '../views'
 
 export const routes = {
     MAIN: '/',
@@ -8,7 +8,12 @@ export const routes = {
 export default [
     {
         path: routes.MAIN,
-        component: Main,
+        element: Main,
+        exact: true
+    },
+    {
+        path: routes.PRODUCT,
+        element: Product,
         exact: true
     },
 
