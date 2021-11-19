@@ -1,46 +1,88 @@
 export const products = [
     {
-        name: "Great Dummy",
-        slug: "great-dummy",
-        price: 104.99,
-        excerpt: "Something that you truly need, but haven’t known about it yet",
-        image: "https://dummyimage.com/500x400",
-        description: "Something that you truly need, but haven’t known about it yet. Multiple winners of Community Awards.",
-        tag: "classic"
+        name: "Man",
+        category: "people",
+        price: 100,
+        currency: "USD",
+        image: {
+            src: "https://dummyimage.com/500x400",
+            alt: "image"
+        },
+        bestseller: false,
+        featured: false,
+        details: null
     },
     {
-        name: "Dummy X Pro",
-        slug: "dummy-x-pro",
-        price: 149.99,
-        excerpt: "Something that you truly need, but haven’t known about it yet",
-        image: "https://dummyimage.com/500x400",
-        description: "Something that you truly need, but haven’t known about it yet. Multiple winners of Community Awards.",
-        tag: "master"
+        name: "Man",
+        category: "people",
+        price: 100,
+        currency: "USD",
+        image: {
+            src: "https://dummyimage.com/500x400",
+            alt: "image"
+        },
+        bestseller: true,
+        featured: false,
+        details: null
     },
     {
-        name: "Great Dummy",
-        slug: "great-dummy",
-        price: 104.99,
-        excerpt: "Something that you truly need, but haven’t known about it yet",
-        image: "https://dummyimage.com/500x400",
-        description: "Something that you truly need, but haven’t known about it yet. Multiple winners of Community Awards.",
-        tag: "classic"
+        name: "Man",
+        category: "people",
+        price: 100,
+        currency: "USD",
+        image: {
+            src: "https://dummyimage.com/500x400",
+            alt: "image"
+        },
+        bestseller: false,
+        featured: false,
+        details: null
     },
     {
-        name: "Dummy X Pro",
-        slug: "dummy-x-pro",
-        price: 149.99,
-        excerpt: "Something that you truly need, but haven’t known about it yet",
-        image: "https://dummyimage.com/500x400",
-        description: "Something that you truly need, but haven’t known about it yet. Multiple winners of Community Awards.",
-        tag: "master"
+        name: "Man",
+        category: "people",
+        price: 100,
+        currency: "USD",
+        image: {
+            src: "https://dummyimage.com/500x400",
+            alt: "image"
+        },
+        bestseller: false,
+        featured: false,
+        details: null
     },
     {
-        name: "Great Dummy",
-        slug: "great-dummy",
-        price: 104.99,
-        excerpt: "Something that you truly need, but haven’t known about it yet",
-        image: "https://dummyimage.com/500x400",
-        description: "Something that you truly need, but haven’t known about it yet. Multiple winners of Community Awards.",
-        tag: "classic"
-    }]
+        name: "Man",
+        category: "people",
+        price: 100,
+        currency: "USD",
+        image: {
+            src: "https://dummyimage.com/500x400",
+            alt: "image"
+        },
+        bestseller: false,
+        featured: true,
+        details: {
+            dimmentions: {
+                width: 1020,
+                height: 1020
+            },
+            size: 15000,
+            description: "So how did the classical Latin become so incoherent? According to McClintock, a 15th century typesetter likely",
+            recommendations: [
+                {
+                    src: "https://dummyimage.com/500x400",
+                    alt: "image"
+                },
+                {
+                    src: "https://dummyimage.com/500x400",
+                    alt: "image"
+                },
+                {
+                    src: "https://dummyimage.com/500x400",
+                    alt: "image"
+                },
+            ]
+        }
+    }
+]
