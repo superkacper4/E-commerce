@@ -5,7 +5,7 @@ import { ProductTile } from '../../components'
 const Main = () => {
     return (
         <div>
-            {products.map((product) => <ProductTile name={product.name} category={product.category} price={product.price} image={product.image} bestseller={product.bestseller} />)}
+            {products.map((product) => <ProductTile {...product} />)}
         </div>
     )
 }

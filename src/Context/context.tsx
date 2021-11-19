@@ -4,21 +4,39 @@ interface Types {
     children: ReactNode
 }
 
-interface ContextTypes {
-    isCartOpen: boolean;
-    setCartOpen: Dispatch<SetStateAction<boolean>>
+interface CartObject {
+    name: string,
+    category: string,
+    price: number,
+    currency: string,
+    image: {
+        src: string,
+        alt: string,
+    },
+    bestseller: boolean
+
 }
 
-const CartContext = React.createContext<ContextTypes>({
+interface CartTypes {
+    isCartOpen: boolean;
+    setCartOpen: Dispatch<SetStateAction<boolean>>;
+    cartContent: CartObject[];
+    setCartContent: Dispatch<SetStateAction<CartObject[]>>;
+}
+
+const CartContext = React.createContext<CartTypes>({
     isCartOpen: false,
-    setCartOpen: () => null
+    setCartOpen: () => null,
+    cartContent: [],
+    setCartContent: () => null,
 })
 
 export const CartProvider = ({ children }: Types) => {
     const [isCartOpen, setCartOpen] = useState<boolean>(false);
+    const [cartContent, setCartContent] = useState<CartObject[]>([])
 
     return (
-        <CartContext.Provider value={{ isCartOpen, setCartOpen }}>
+        <CartContext.Provider value={{ isCartOpen, setCartOpen, cartContent, setCartContent }}>
             {children}
         </CartContext.Provider>
     )
