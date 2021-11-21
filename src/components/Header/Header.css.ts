@@ -6,10 +6,15 @@ const StyledHeader = styled.header`
     height: 15vh;
     margin: 0;
     padding: 0;
+    background-color: ${({ theme }) => theme.colors.primary};
     border-bottom: 4px solid ${({ theme }) => theme.colors.third};
     display: flex;
     justify-content: space-around;
     align-items: center;
+    position: fixed;
+    top:0;
+    left:0;
+    z-index: 2;
 `;
 
 const StyledLogo = styled.img`

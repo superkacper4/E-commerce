@@ -9,10 +9,10 @@ interface BestsellerTypes {
 }
 
 const StyledProductTile = styled.div`
-    width: 100vw;
-    margin: 0;
+    width: 100%;
+    margin: 10px 0;
     padding: 0;
-    border: 1px solid black;
+    overflow: hidden;
 `;
 
 const StyledProductDivImage = styled.div`
@@ -41,7 +41,7 @@ const StyledBestseller = styled.div`
 
 const StyledButton = styled.button`
     width: 100%;
-    padding: 10px;
+    padding: 10px 0;
     background-color: ${({ theme }) => theme.colors.secondary};
     color: ${({ theme }) => theme.colors.primary};
     border: none;

@@ -4,6 +4,7 @@ const theme = {
         secondary: 'black',
         third: '#E4E4E4',
         text: 'black',
+        fourth: '#656565'
     },
     fontSize: {
         xs: '0.5rem',
@@ -12,8 +13,6 @@ const theme = {
         m: '1.5rem',
         l: '1.8rem',
         xl: '2.3rem',
-        h1: '3rem',
-        h2: '2.6rem',
     },
     breakPoints: {
         phone: 'min-width:425px',

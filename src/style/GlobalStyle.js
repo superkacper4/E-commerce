@@ -4,7 +4,7 @@ const GlobalStyle = createGlobalStyle`
     body{
         color: ${({ theme }) => theme.colors.font};
         background-color: ${({ theme }) => theme.colors.primary};
-        font-family: 'Sedgwick Ave Display', cursive;
+        font-family: 'Archivo', sans-serif;
         overflow-x: hidden;
         padding: 0 ;
         margin: 0;
@@ -19,7 +19,11 @@ const GlobalStyle = createGlobalStyle`
         box-sizing: border-box;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
+
     }
+    html {
+  scroll-behavior: smooth;
+}
 `;
 
 export default GlobalStyle;

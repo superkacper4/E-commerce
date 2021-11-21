@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { useCart } from '../../Context/context';
+import { H2, H3, H4 } from '..';
 import { StyledBestseller, StyledProductImage, StyledProductDivImage, StyledProductTile, StyledButton } from './ProductTile.css'
 
 interface ProductTileTypes {
@@ -33,22 +34,29 @@ const ProductTile = ({ name, category, price, bestseller, image, currency }: Pro
             }])
             console.log('add to cart', cartContent)
         }
-
-
-
     }
 
 
     return (
-        <StyledProductTile onClick={() => setHover(!isHover)} onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)}>
+        <StyledProductTile onClick={() => setHover(true)} onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)}>
             <StyledProductDivImage>
                 <StyledBestseller bestseller={bestseller}>Bestseller</StyledBestseller>
                 <StyledProductImage src={image.src} />
                 <StyledButton isHover={isHover} onClick={addToCart}>Add to cart</StyledButton>
             </StyledProductDivImage>
-            <h4>{category}</h4>
-            <h2>{name}</h2>
-            <h3>{price}</h3>
+            <H4>{category}</H4>
+            <H2>{name}</H2>
+            <H3>
+                {(() => {
+                    switch (currency) {
+
+                        case 'EURO': return 'Є'
+                        case "PLN": return 'PLN'
+
+                        default: return '$'
+                    }
+                })()}
+                {price}</H3>
         </StyledProductTile>
     )
 }
