@@ -17,7 +17,7 @@ interface ProductTileTypes {
 
 const ProductTile = ({ name, category, price, bestseller, image, currency }: ProductTileTypes) => {
     const [isHover, setHover] = useState(false);
-    const { setCartContent, cartContent } = useCart()
+    const { setCartContent, cartContent, setCartOpen } = useCart()
 
     const addToCart = () => {
         if (cartContent.some(item => item.name === name)) {
@@ -32,7 +32,7 @@ const ProductTile = ({ name, category, price, bestseller, image, currency }: Pro
                 image: image,
                 currency: currency
             }])
-            console.log('add to cart', cartContent)
+            setCartOpen(true)
         }
     }
 

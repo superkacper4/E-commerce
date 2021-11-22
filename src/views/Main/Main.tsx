@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { products } from '../../constans/db'
-import { ProductTile } from '../../components'
+import { ProductTile, P, Cart } from '../../components'
 import { StyledMain, StyledLink, StyledSpan, StyledDiv, StyledArrow } from './Main.css'
 
 const Main = () => {
@@ -13,13 +13,17 @@ const Main = () => {
 
     return (
         <StyledMain>
+            <Cart />
+            <P>
+                Photographics / <StyledSpan isPage={false}>Premium photos</StyledSpan>
+            </P>
             {products.slice(Number(page) * 6, (1 + Number(page)) * 6).map((product, i) => {
                 return <ProductTile key={product.name} {...product} />
 
             })}
 
             <StyledDiv>
-                {Number(page) !== 0 ? <StyledArrow to={`/${Number(page) - 1}`} > {'<'} </StyledArrow> : null}
+                {Number(page) !== 0 ? <StyledArrow onClick={() => { window.scrollTo(0, 0) }} to={`/${Number(page) - 1}`} > {'<'} </StyledArrow> : null}
 
                 {[...Array(numOfLinks)].map((e, i) => (
                     <StyledLink to={`/${i}`}>
@@ -27,7 +31,7 @@ const Main = () => {
                     </StyledLink>
                 ))}
 
-                {Number(page) !== [...Array(numOfLinks)].length - 1 ? <StyledArrow to={`/${Number(page) + 1}`} > {'>'} </StyledArrow> : null}
+                {Number(page) !== [...Array(numOfLinks)].length - 1 ? <StyledArrow onClick={() => { window.scrollTo(0, 0) }} to={`/${Number(page) + 1}`} > {'>'} </StyledArrow> : null}
 
             </StyledDiv>
 
