@@ -1,11 +1,12 @@
 import styled from 'styled-components'
-
+import { H2 } from '..'
 interface Types {
     isCartOpen: boolean;
 }
 
 const StyledCart = styled.div<Types>`
     width: 100%;
+    max-height: 85vh;
     max-width: 500px;
     border: 4px solid ${({ theme }) => theme.colors.third};
     background-color: ${({ theme }) => theme.colors.primary};
@@ -19,6 +20,7 @@ const StyledCart = styled.div<Types>`
     transform: ${({ isCartOpen }) => isCartOpen ? 'translateX(0)' : 'translateX(100%)'} ;
     transition: transform .5s;
     z-index: 2;
+    overflow: scroll;
 `;
 
 const StyledProduct = styled.div`
@@ -29,7 +31,10 @@ const StyledProduct = styled.div`
     justify-content: center;
     align-items: center;
     border-bottom:  1px solid ${({ theme }) => theme.colors.third};
+`;
 
+const StyledH2 = styled(H2)`
+    font-size: 20px;
 `;
 
 const StyledImg = styled.img`
@@ -60,4 +65,4 @@ const StyledClearButton = styled.button`
     text-transform: uppercase;
 `;
 
-export { StyledCart, StyledProduct, StyledImg, StyledDiv, StyledCloseButton, StyledClearButton }
+export { StyledCart, StyledProduct, StyledImg, StyledDiv, StyledCloseButton, StyledClearButton, StyledH2 }

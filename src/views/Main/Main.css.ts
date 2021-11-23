@@ -61,4 +61,17 @@ const StyledArrow = styled(Link)`
     font-weight: 100;
 `;
 
-export { StyledMain, StyledLink, StyledSpan, StyledDiv, StyledArrow }
+const StyledSelect = styled.select`
+    border: none;
+    text-align: center;
+    appearance: none;
+`;
+
+const StyledSortButton = styled.button`
+    background-color: transparent;
+    border: none;
+`;
+
+
+
+export { StyledMain, StyledLink, StyledSpan, StyledDiv, StyledArrow, StyledSelect, StyledSortButton }

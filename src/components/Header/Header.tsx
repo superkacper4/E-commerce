@@ -1,10 +1,10 @@
 import React from 'react'
-import { StyledHeader, StyledLogo, StyledCartButton } from './Header.css'
+import { StyledHeader, StyledLogo, StyledCartButton, StyledCounter } from './Header.css'
 import logoIMG from '../../assets/logo.png'
 import { useCart } from '../../Context/context'
 
 const Header = () => {
-    const { isCartOpen, setCartOpen } = useCart()
+    const { isCartOpen, setCartOpen, cartContent } = useCart()
 
     const openCart = () => {
         setCartOpen(!isCartOpen)
@@ -14,7 +14,12 @@ const Header = () => {
     return (
         <StyledHeader>
             <StyledLogo src={logoIMG} alt="BENJAMAS" />
-            <StyledCartButton onClick={openCart} />
+            <StyledCartButton onClick={openCart} >
+                {cartContent.length <= 0 ? null :
+                    <StyledCounter>{cartContent.length}</StyledCounter>
+                }
+
+            </StyledCartButton>
 
         </StyledHeader>
     )

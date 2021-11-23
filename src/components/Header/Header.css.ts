@@ -29,6 +29,18 @@ const StyledCartButton = styled.button`
     border: none;
     background-image: url(${cartIMG});
     background-repeat: no-repeat;
+    position: relative;
 `;
 
-export { StyledHeader, StyledLogo, StyledCartButton }
+const StyledCounter = styled.div`
+    padding: 1px 2px;
+    position: absolute;
+    font-size: ${({ theme }) => theme.fontSize.s};
+    background-color: ${({ theme }) => theme.colors.secondary};
+    color: ${({ theme }) => theme.colors.primary};
+    position: absolute;
+    bottom: 0;
+    right: 0;
+`;
+
+export { StyledHeader, StyledLogo, StyledCartButton, StyledCounter }
