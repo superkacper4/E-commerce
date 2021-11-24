@@ -8,11 +8,20 @@ interface BestsellerTypes {
     bestseller: boolean
 }
 
+interface ImageTypes {
+    src: string;
+}
+
 const StyledProductTile = styled.div`
     width: 100%;
+    max-width: 300px;
     margin: 10px 0;
     padding: 0;
     overflow: hidden;
+
+    @media (${({ theme }) => theme.breakPoints.desktop}){
+        margin: 10px;
+    }
 `;
 
 const StyledProductDivImage = styled.div`
@@ -20,12 +29,16 @@ const StyledProductDivImage = styled.div`
     height: auto;
     position: relative;
     overflow: hidden;
+    text-align:center;
 `;
 
-const StyledProductImage = styled.img`
-    height: auto;
+const StyledProductImage = styled.div`
     width: 100%;
-
+    height: 40vh;
+    background-image: url(${({ src }: ImageTypes) => src});
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
 `;
 
 const StyledBestseller = styled.div`
@@ -51,6 +64,14 @@ const StyledButton = styled.button`
     bottom: 0;
     left:0;
     text-transform: uppercase;
+
+    @media (${({ theme }) => theme.breakPoints.desktop}){
+        cursor:pointer;
+        transition: background-color .5s, transform .5s;
+        &:hover{
+            background-color: ${({ theme }) => theme.colors.fourth};
+        }
+    }
 `;
 
 export { StyledBestseller, StyledProductImage, StyledProductDivImage, StyledProductTile, StyledButton }

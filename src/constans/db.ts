@@ -197,7 +197,7 @@ export const products: ArrTypes[] = [
         price: 400,
         currency: "USD",
         image: {
-            src: "https://o.quizlet.com/WkSeKpoEl476-.SWPz4olA.jpg",
+            src: "https://www.wallpaperup.com/uploads/wallpapers/2014/03/26/310518/5ff340dfcc63d9bb524105de386b6692-700.jpg",
             alt: "image"
         },
         bestseller: false,

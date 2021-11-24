@@ -8,7 +8,14 @@ interface Types {
 const StyledMain = styled.section`
     width: 100%;
     height: auto;
-    padding: 15vh 10px 0;
+    padding: 15vh 10px 10px;
+`;
+
+const StyledProducts = styled.div`
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 `;
 
 const StyledLink = styled(Link)`
@@ -46,6 +53,8 @@ const StyledSpan = styled.span<Types>`
 `;
 
 const StyledDiv = styled.div`
+    margin: 0;
+    padding: 0;
     display: flex;
     justify-content: center;
 `;
@@ -74,4 +83,4 @@ const StyledSortButton = styled.button`
 
 
 
-export { StyledMain, StyledLink, StyledSpan, StyledDiv, StyledArrow, StyledSelect, StyledSortButton }
+export { StyledMain, StyledLink, StyledSpan, StyledDiv, StyledArrow, StyledSelect, StyledSortButton, StyledProducts }
