@@ -21,6 +21,9 @@ const StyledCart = styled.div<Types>`
     transition: transform .5s;
     z-index: 2;
     overflow: scroll;
+    @media (${({ theme }) => theme.breakPoints.desktop}){
+        top: 10vh;
+    }
 `;
 
 const StyledProduct = styled.div`

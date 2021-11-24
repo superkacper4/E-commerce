@@ -6,14 +6,12 @@ interface Types {
 
 interface CartObject {
     name: string,
-    category: string,
     price: number,
     currency: string,
     image: {
         src: string,
         alt: string,
     },
-    bestseller: boolean
 
 }
 

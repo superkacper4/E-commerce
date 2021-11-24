@@ -15,6 +15,9 @@ const StyledHeader = styled.header`
     top:0;
     left:0;
     z-index: 2;
+    @media (${({ theme }) => theme.breakPoints.desktop}){
+        height: 10vh;
+    }
 `;
 
 const StyledLogo = styled.img`

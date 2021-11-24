@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react'
-import { useParams, Link } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
+import paramsIMG from '../../assets/params.png'
 import { products } from '../../constans/db'
-import { ProductTile, P, Cart } from '../../components'
-import { StyledMain, StyledLink, StyledSpan, StyledDiv, StyledArrow, StyledSelect, StyledSortButton, StyledProducts } from './Main.css'
+import { ProductTile, P, Cart, FeaturedProduct } from '../../components'
+import { StyledMain, StyledLink, StyledSpan, StyledDiv, StyledArrow, StyledSelect, StyledSortButton, StyledProducts, StyledParamsDiv, StyledImg } from './Main.css'
 
 interface ArrTypes {
     name: string;
@@ -29,9 +30,12 @@ interface ArrTypes {
 
 
 const Main = () => {
-    const [sortBy, setSortBy] = useState('')
-    const [sortDirection, setSortDirection] = useState(false)
+    const [sortBy, setSortBy] = useState<string>('')
+    const [filterBy, setFilterBy] = useState<string[]>([])
+    const [sortDirection, setSortDirection] = useState<boolean>(false)
+
     let numOfLinks = (Math.ceil(products.length / 6))
+
     const { page } = useParams()
 
     const sortArray = (a: ArrTypes, b: ArrTypes) => {
@@ -58,27 +62,58 @@ const Main = () => {
         return 0;
     }
 
+    const moveFeaturedToFront = (a: ArrTypes, b: ArrTypes) => {
+        if (a.featured <= b.featured) return 1
+        if (a.featured > b.featured) return -1
+        return 0
+
+    }
+
+    // const filterArr = (item:ArrTypes) => {
+    //     filterBy.includes((xd:string) => {
+    //         item.category === xd
+    //     })
+    // }
+
 
     return (
         <StyledMain>
             <Cart />
-            <P>
-                Photographics / <StyledSpan isPage={false}>Premium photos</StyledSpan>
-            </P>
-            <StyledSpan isPage={false}>Sort By:</StyledSpan><StyledSelect onChange={(e) => setSortBy(e.target.value)}>
+            <StyledParamsDiv>
+                <P>
+                    Photographics / <StyledSpan isPage={false}>Premium photos</StyledSpan>
+                </P>
+                <StyledImg src={paramsIMG} alt="parmas" />
+            </StyledParamsDiv>
+            <StyledSpan isPage={false}>Sort By:</StyledSpan>
+            <StyledSelect onChange={(e) => setSortBy(e.target.value)}>
                 <option value='' selected>-----</option>
                 <option value='price'>Price</option>
                 <option value='alpha'>Alphabet </option>
+            </StyledSelect>
+
+            <StyledSelect onChange={(e) => { setFilterBy([...filterBy, e.target.value]); console.log(filterBy) }} multiple>
+                {products.map(product => (
+                    <option>{product.category}</option>
+                ))}
+
             </StyledSelect>
 
             <StyledSortButton onClick={() => setSortDirection(!sortDirection)}>{sortDirection ? '▼' : '▲'}</StyledSortButton>
 
 
             <StyledProducts>
-                {products.sort(sortArray).slice(Number(page) * 6, (1 + Number(page)) * 6).map((product, i) => {
-                    return <ProductTile key={product.name} {...product} />
+                {page !== '0' ? products.sort(moveFeaturedToFront).sort(sortArray).slice(Number(page) * 6, (1 + Number(page)) * 6).map((product) => {
+                    if (product.featured) return <FeaturedProduct key={product.name} {...product} />
+                    else return <ProductTile key={product.name} {...product} />
 
-                })}
+                }) :
+                    products.sort(moveFeaturedToFront).sort(sortArray).slice(Number(page) * 6, (1 + Number(page)) * 7).map((product) => {
+                        if (product.featured) return <FeaturedProduct key={product.name} {...product} />
+                        else return <ProductTile key={product.name} {...product} />
+
+                    })
+                }
             </StyledProducts>
 
             <StyledDiv>
@@ -94,7 +129,7 @@ const Main = () => {
 
             </StyledDiv>
 
-        </StyledMain>
+        </StyledMain >
     )
 }
 

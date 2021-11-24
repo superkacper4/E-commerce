@@ -27,8 +27,6 @@ const ProductTile = ({ name, category, price, bestseller, image, currency }: Pro
             setCartContent([...cartContent, {
                 name: name,
                 price: price,
-                category: category,
-                bestseller: bestseller,
                 image: image,
                 currency: currency
             }])

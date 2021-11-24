@@ -140,12 +140,12 @@ export const products: ArrTypes[] = [
         details: null
     },
     {
-        name: "FC Barcelona",
-        category: "logo",
+        name: "Paluch",
+        category: "people",
         price: 200,
         currency: "USD",
         image: {
-            src: "https://s3.tvp.pl/images2/c/b/2/uid_cb2c5585cfd0649d283ec3062dd390211632896480966_width_1200_play_0_pos_0_gs_0_height_678_wg-sportu-limit-placowy-barcelony-ma-wyniesc-tylko-97-milionow-euro-fot-epa.jpg",
+            src: "https://i1.sndcdn.com/artworks-2BpROe4PgXbjkuL6-NldBuA-t500x500.jpg",
             alt: "image"
         },
         bestseller: false,
@@ -271,12 +271,12 @@ export const products: ArrTypes[] = [
     },
 
     {
-        name: "Paluch",
-        category: "people",
+        name: "FC Barcelona",
+        category: "logo",
         price: 200,
         currency: "USD",
         image: {
-            src: "https://i1.sndcdn.com/artworks-2BpROe4PgXbjkuL6-NldBuA-t500x500.jpg",
+            src: "https://s3.tvp.pl/images2/c/b/2/uid_cb2c5585cfd0649d283ec3062dd390211632896480966_width_1200_play_0_pos_0_gs_0_height_678_wg-sportu-limit-placowy-barcelony-ma-wyniesc-tylko-97-milionow-euro-fot-epa.jpg",
             alt: "image"
         },
         bestseller: false,
@@ -290,15 +290,15 @@ export const products: ArrTypes[] = [
             description: "So how did the classical Latin become so incoherent? According to McClintock, a 15th century typesetter likely",
             recommendations: [
                 {
-                    src: "https://dummyimage.com/500x400",
+                    src: "https://i.pinimg.com/564x/1a/8f/43/1a8f43967dd6272c811dacd035eee629.jpg",
                     alt: "image"
                 },
                 {
-                    src: "https://dummyimage.com/500x400",
+                    src: "https://pbs.twimg.com/profile_images/738052344756199429/zA5S6sk0.jpg",
                     alt: "image"
                 },
                 {
-                    src: "https://dummyimage.com/500x400",
+                    src: "https://avatarfiles.alphacoders.com/668/66805.jpg",
                     alt: "image"
                 },
             ]

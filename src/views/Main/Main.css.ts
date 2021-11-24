@@ -9,6 +9,10 @@ const StyledMain = styled.section`
     width: 100%;
     height: auto;
     padding: 15vh 10px 10px;
+
+    @media (${({ theme }) => theme.breakPoints.desktop}){
+    padding: 10vh 50px 10px;
+    }
 `;
 
 const StyledProducts = styled.div`
@@ -81,6 +85,22 @@ const StyledSortButton = styled.button`
     border: none;
 `;
 
+const StyledParamsDiv = styled.div`
+    padding: 0;
+    margin: 0;
+    position: relative;
+`;
+
+const StyledImg = styled.img`
+    position: absolute;
+    top: 0;
+    right: 0;
+
+    @media (${({ theme }) => theme.breakPoints.desktop}){
+        display: none;
+    }
+`;
 
 
-export { StyledMain, StyledLink, StyledSpan, StyledDiv, StyledArrow, StyledSelect, StyledSortButton, StyledProducts }
+
+export { StyledMain, StyledLink, StyledSpan, StyledDiv, StyledArrow, StyledSelect, StyledSortButton, StyledProducts, StyledParamsDiv, StyledImg }
