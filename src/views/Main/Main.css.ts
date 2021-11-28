@@ -1,5 +1,7 @@
 import { Link } from 'react-router-dom'
 import styled, { css } from 'styled-components'
+import { Sort } from '../../components'
+
 
 interface Types {
     isPage: boolean
@@ -13,6 +15,21 @@ const StyledMain = styled.section`
     @media (${({ theme }) => theme.breakPoints.desktop}){
     padding: 10vh 50px 10px;
     }
+`;
+
+const StyledProductsFilterDiv = styled.div`
+
+    @media (${({ theme }) => theme.breakPoints.desktop}){
+        display: grid; 
+        grid-template-columns: 0.3fr 1fr; 
+        grid-template-rows: 1fr; 
+        gap: 0px 0px; 
+        grid-template-areas: 
+            ". ."; 
+        width: 100%; 
+        height: 100%; 
+    }
+
 `;
 
 const StyledProducts = styled.div`
@@ -74,33 +91,30 @@ const StyledArrow = styled(Link)`
     font-weight: 100;
 `;
 
-const StyledSelect = styled.select`
-    border: none;
-    text-align: center;
-    appearance: none;
-`;
-
-const StyledSortButton = styled.button`
-    background-color: transparent;
-    border: none;
-`;
-
 const StyledParamsDiv = styled.div`
     padding: 0;
     margin: 0;
     position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+
 `;
 
 const StyledImg = styled.img`
-    position: absolute;
-    top: 0;
-    right: 0;
-
     @media (${({ theme }) => theme.breakPoints.desktop}){
         display: none;
     }
 `;
 
 
+const StyledSort = styled(Sort)`
+    display: none;
+    @media (${({ theme }) => theme.breakPoints.desktop}){
+        display: flex;
+    }
+`;
 
-export { StyledMain, StyledLink, StyledSpan, StyledDiv, StyledArrow, StyledSelect, StyledSortButton, StyledProducts, StyledParamsDiv, StyledImg }
+
+
+export { StyledMain, StyledLink, StyledSpan, StyledDiv, StyledArrow, StyledProducts, StyledParamsDiv, StyledImg, StyledSort, StyledProductsFilterDiv }

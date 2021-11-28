@@ -11,6 +11,7 @@ const StyledFeaturedProduct = styled.div`
     padding: 0;
     overflow: hidden;
     border-bottom: 4px solid ${({ theme }) => theme.colors.third};
+    
     @media (${({ theme }) => theme.breakPoints.desktop}){
         display: flex;
         flex-wrap: wrap;

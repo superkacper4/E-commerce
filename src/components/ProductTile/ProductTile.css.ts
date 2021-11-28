@@ -22,6 +22,10 @@ const StyledProductTile = styled.div`
     @media (${({ theme }) => theme.breakPoints.desktop}){
         margin: 10px;
     }
+
+    @media (${({ theme }) => theme.breakPoints.bigDesktop}){
+        margin: 15px;
+    }
 `;
 
 const StyledProductDivImage = styled.div`
