@@ -13,7 +13,7 @@ const Cart = () => {
     return (
         <StyledCart isCartOpen={isCartOpen}>
             <StyledCloseButton onClick={() => setCartOpen(false)}>X</StyledCloseButton>
-            {/* {cartContent === [] ? <P>Koszyk pusty</P> : <P>xd</P>} */}
+            {/* {cartContent ? <P>Koszyk pusty</P> : <P>xd</P>} */}
             {cartContent.map(product =>
                 <StyledProduct key={product.name}>
                     <StyledDiv>

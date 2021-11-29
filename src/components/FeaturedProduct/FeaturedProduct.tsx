@@ -54,7 +54,7 @@ const FeaturedProduct = ({ name, category, price, image, currency, details }: Pr
                 <StyledH4>People also buy</StyledH4>
                 <StyledRecomendationDiv>
                     {details?.recommendations.map(recomendation => (
-                        <StyledRecomendation src={recomendation.src} />
+                        <StyledRecomendation src={recomendation.src} key={recomendation.alt} />
                     ))}
                 </StyledRecomendationDiv>
 

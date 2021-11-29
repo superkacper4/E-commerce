@@ -23,6 +23,7 @@ const StyledCart = styled.div<Types>`
     overflow: scroll;
     @media (${({ theme }) => theme.breakPoints.desktop}){
         top: 10vh;
+        cursor: pointer;
     }
 `;
 
@@ -57,6 +58,9 @@ const StyledCloseButton = styled.button`
     color: ${({ theme }) => theme.colors.text};
     font-size: ${({ theme }) => theme.fontSize.l};
     margin: 5px;
+    @media (${({ theme }) => theme.breakPoints.desktop}){
+        cursor: pointer;
+    }
 `;
 
 const StyledClearButton = styled.button`
@@ -66,6 +70,15 @@ const StyledClearButton = styled.button`
     color: ${({ theme }) => theme.colors.text};
     border: 3px solid ${({ theme }) => theme.colors.secondary};
     text-transform: uppercase;
+    @media (${({ theme }) => theme.breakPoints.desktop}){
+        cursor: pointer;
+        transition: color .5s, background-color 0.5s;
+
+        &:hover{
+            color: ${({ theme }) => theme.colors.primary};
+            background-color: ${({ theme }) => theme.colors.secondary};
+        }
+    }
 `;
 
 export { StyledCart, StyledProduct, StyledImg, StyledDiv, StyledCloseButton, StyledClearButton, StyledH2 }

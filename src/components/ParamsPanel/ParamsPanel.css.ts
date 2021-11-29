@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { Sort } from '..'
+import { Sort, P } from '..'
 
 interface ParamsPanelTypes {
     isParamsPanelOpen: boolean;
@@ -63,4 +63,8 @@ const StyledInputDiv = styled.div`
     margin: 10px 0;
 `;
 
-export { StyledParamsPanel, StyledSort, StyledCloseButton, StyledInputDiv }
+const StyledP = styled(P)`
+    font-weight: 800;
+`;
+
+export { StyledParamsPanel, StyledSort, StyledCloseButton, StyledInputDiv, StyledP }

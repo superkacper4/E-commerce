@@ -13,7 +13,7 @@ const Sort = ({ className, sortDirection, setSortDirection, setSortBy }: Types) 
         <StyledSort className={className}>
             <StyledSpan>Sort By:</StyledSpan>
             <StyledSelect onChange={(e) => setSortBy(e.target.value)}>
-                <option value='' selected disabled>------</option>
+                <option value='' defaultValue=''>------</option>
                 <option value='price'>Price</option>
                 <option value='alpha'>Alphabet </option>
             </StyledSelect>

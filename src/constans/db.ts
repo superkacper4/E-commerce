@@ -24,7 +24,7 @@ interface ArrTypes {
 export const products: ArrTypes[] = [
     {
         name: "Viking",
-        category: "wariors",
+        category: "warior",
         price: 200,
         currency: "USD",
         image: {
@@ -291,15 +291,15 @@ export const products: ArrTypes[] = [
             recommendations: [
                 {
                     src: "https://i.pinimg.com/564x/1a/8f/43/1a8f43967dd6272c811dacd035eee629.jpg",
-                    alt: "image"
+                    alt: "a"
                 },
                 {
                     src: "https://pbs.twimg.com/profile_images/738052344756199429/zA5S6sk0.jpg",
-                    alt: "image"
+                    alt: "b"
                 },
                 {
                     src: "https://avatarfiles.alphacoders.com/668/66805.jpg",
-                    alt: "image"
+                    alt: "c"
                 },
             ]
         }

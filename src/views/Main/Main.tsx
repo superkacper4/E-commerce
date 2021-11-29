@@ -28,17 +28,22 @@ interface ArrTypes {
 
 }
 
+interface PriceTypes {
+    name: string;
+    values: number[];
+}
 
 const Main = () => {
     const [sortBy, setSortBy] = useState<string>('')
     const [isParamsPanelOpen, setParamsPanelOpen] = useState<boolean>(false)
     const [filterBy, setFilterBy] = useState<string[]>([])
-    const [priceRange, setPriceRange] = useState<number[]>([])
+    const [priceRange, setPriceRange] = useState<PriceTypes[]>([])
     const [sortDirection, setSortDirection] = useState<boolean>(false)
 
     const { page } = useParams()
 
     const sortArray = (a: ArrTypes, b: ArrTypes) => {
+        if (sortBy === '') return 0;
         if (sortBy === 'price' && !sortDirection) {
             if (a.price >= b.price) return 1
             if (a.price < b.price) return -1
@@ -77,7 +82,7 @@ const Main = () => {
 
     const priceRangeArr = (item: ArrTypes) => {
         return !priceRange.length || priceRange.some((price) => {
-            return price === item.price
+            return item.price >= price.values[0] && item.price <= price.values[1]
         })
     }
 

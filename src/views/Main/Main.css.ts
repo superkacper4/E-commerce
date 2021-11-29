@@ -98,10 +98,12 @@ const StyledParamsDiv = styled.div`
     width: 100%;
     display: flex;
     justify-content: space-between;
-
+    align-items:center;
 `;
 
 const StyledImg = styled.img`
+    width: 29px;
+    height: 29px;
     @media (${({ theme }) => theme.breakPoints.desktop}){
         display: none;
     }
