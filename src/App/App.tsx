@@ -12,7 +12,7 @@ function App() {
       <CartProvider>
         <Helmet>
           <meta charSet="utf-8" />
-          <title>My Title</title>
+          <title>Bejamas_</title>
           <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@100;400&display=swap" rel="stylesheet" />
         </Helmet>
         <GlobalStyle />
