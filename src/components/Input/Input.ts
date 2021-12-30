@@ -7,7 +7,7 @@ const Input = styled.input`
     max-width:500px; 
     background-color: transparent;
     text-align: center;
-    margin: 5px;
+    margin: 5px 0;
     font-size: ${({ theme }) => theme.fontSize.m};
 `;
 
