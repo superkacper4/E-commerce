@@ -3,32 +3,33 @@ import { useCart } from '../../Context/context';
 import { H2, H3, H4 } from '..';
 import { StyledBestseller, StyledProductImage, StyledProductDivImage, StyledProductTile, StyledButton } from './ProductTile.css'
 
-interface ProductTileTypes {
-    name: string;
-    category: string;
-    bestseller: boolean;
+interface BooksTypes {
+    id: number;
+    title: string;
+    author: string;
+    cover_url: string;
+    pages: number;
     price: number;
-    image: {
-        src: string;
-        alt: string;
-    };
-    currency: string
+    currency: string;
 }
 
-const ProductTile = ({ name, category, price, bestseller, image, currency }: ProductTileTypes) => {
+const ProductTile = ({ title, id, price, author, cover_url, currency, pages }: BooksTypes) => {
     const [isHover, setHover] = useState(false);
     const { setCartContent, cartContent, setCartOpen } = useCart()
 
     const addToCart = () => {
-        if (cartContent.some(item => item.name === name)) {
+        if (cartContent.some(item => item.title === title)) {
             console.log('koszyk:', cartContent)
         }
         else {
             setCartContent([...cartContent, {
-                name: name,
-                price: price,
-                image: image,
-                currency: currency
+                title,
+                price,
+                cover_url,
+                currency,
+                pages,
+                author,
+                id,
             }])
             setCartOpen(true)
         }
@@ -38,13 +39,12 @@ const ProductTile = ({ name, category, price, bestseller, image, currency }: Pro
     return (
         <StyledProductTile onClick={() => setHover(true)} onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)}>
             <StyledProductDivImage>
-                <StyledBestseller bestseller={bestseller}>Bestseller</StyledBestseller>
-                <StyledProductImage src={image.src} />
+                <StyledProductImage src={cover_url} />
                 <StyledButton isHover={isHover} onClick={addToCart}>Add to cart</StyledButton>
             </StyledProductDivImage>
-            <H4>{category}</H4>
-            <H2>{name}</H2>
-            <H3>
+            <H4>{author}</H4>
+            <H2>{title}</H2>
+            <H3>{price}
                 {(() => {
                     switch (currency) {
 
@@ -54,7 +54,8 @@ const ProductTile = ({ name, category, price, bestseller, image, currency }: Pro
                         default: return '$'
                     }
                 })()}
-                {price}</H3>
+            </H3>
+            <H4>{pages} pages</H4>
         </StyledProductTile>
     )
 }

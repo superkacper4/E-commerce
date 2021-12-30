@@ -4,15 +4,15 @@ interface Types {
     children: ReactNode
 }
 
-interface CartObject {
-    name: string,
-    price: number,
-    currency: string,
-    image: {
-        src: string,
-        alt: string,
-    },
 
+interface CartObject {
+    id: number;
+    title: string;
+    author: string;
+    cover_url: string;
+    pages: number;
+    price: number;
+    currency: string;
 }
 
 interface CartTypes {

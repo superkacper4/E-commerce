@@ -7,8 +7,18 @@ interface PriceTypes {
     values: number[];
 }
 
+interface BooksTypes {
+    id: number;
+    title: string;
+    author: string;
+    cover_url: string;
+    pages: number;
+    price: number;
+    currency: string;
+}
 
 interface Types {
+    books: BooksTypes[];
     setSortDirection: Dispatch<SetStateAction<boolean>>;
     setSortBy: Dispatch<SetStateAction<string>>;
     sortDirection: boolean;
@@ -45,7 +55,7 @@ const priceRangeArray = [
     },
 ]
 
-const ParamsPanel = ({ sortDirection, setSortDirection, setSortBy, isParamsPanelOpen, setParamsPanelOpen, setFilterBy, filterBy, priceRange, setPriceRange }: Types) => {
+const ParamsPanel = ({ books, sortDirection, setSortDirection, setSortBy, isParamsPanelOpen, setParamsPanelOpen, setFilterBy, filterBy, priceRange, setPriceRange }: Types) => {
     const setFilter = (e: React.ChangeEvent<HTMLInputElement>) => {
         if (e.target.checked) setFilterBy([...filterBy, e.target.value])
 
@@ -86,11 +96,11 @@ const ParamsPanel = ({ sortDirection, setSortDirection, setSortBy, isParamsPanel
             <StyledCloseButton onClick={() => { setParamsPanelOpen(false); console.log(isParamsPanelOpen) }}>x</StyledCloseButton>
             <StyledSort setSortBy={setSortBy} setSortDirection={setSortDirection} sortDirection={sortDirection} />
 
-            <StyledP>Category</StyledP>
-            {[...new Set(products.map(product => product.category))].map(category => (
-                <StyledInputDiv key={category}>
-                    <input type='checkbox' value={category} onChange={(e) => setFilter(e)} />
-                    <label htmlFor={`${category}`}>{category}</label>
+            <StyledP>Authors</StyledP>
+            {[...new Set(books.map(product => product.author))].map(author => (
+                <StyledInputDiv key={author}>
+                    <input type='checkbox' value={author} onChange={(e) => setFilter(e)} />
+                    <label htmlFor={`${author}`}>{author}</label>
                 </StyledInputDiv>
             ))}
             <StyledP>Price range</StyledP>

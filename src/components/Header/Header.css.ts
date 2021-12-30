@@ -22,7 +22,7 @@ const StyledHeader = styled.header`
 
 const StyledLogo = styled.img`
     max-width: 50%;
-    max-height: 100%;
+    max-height: 50%;
 `;
 
 const StyledCartButton = styled.button`

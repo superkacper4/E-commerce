@@ -1,6 +1,6 @@
 import React from "react";
 import { Routes, Route, BrowserRouter } from "react-router-dom";
-import { Main } from "../views";
+import { Main, Summary } from "../views";
 
 const Router = () => (
     // <Routes>
@@ -12,6 +12,7 @@ const Router = () => (
     <BrowserRouter>
         <Routes>
             <Route path="/:page" element={<Main />} />
+            <Route path="/summary" element={<Summary />} />
         </Routes>
     </BrowserRouter>
 )

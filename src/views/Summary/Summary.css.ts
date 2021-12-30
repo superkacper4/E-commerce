@@ -1,30 +1,20 @@
 import styled from 'styled-components'
 import { Link } from "react-router-dom";
-import { H2 } from '..'
-interface Types {
-    isCartOpen: boolean;
-}
+import { H2 } from '../../components'
 
-const StyledCart = styled.div<Types>`
+const StyledSummary = styled.div`
+    min-height: 85vh;
+    margin-top: 15vh;
     width: 100%;
-    max-height: 85vh;
-    max-width: 500px;
     border: 4px solid ${({ theme }) => theme.colors.third};
     background-color: ${({ theme }) => theme.colors.primary};
     padding: 15px;
     display: flex;
     flex-direction: column;
     align-items: flex-end;
-    position: fixed;
-    top: 15vh;
-    right: 0;
-    transform: ${({ isCartOpen }) => isCartOpen ? 'translateX(0)' : 'translateX(100%)'} ;
-    transition: transform .5s;
-    z-index: 2;
-    overflow: scroll;
+
     @media (${({ theme }) => theme.breakPoints.desktop}){
-        top: 10vh;
-        cursor: pointer;
+        min-height: 90vh;
     }
 `;
 
@@ -101,4 +91,4 @@ const StyledLink = styled(Link)`
     }
 `;
 
-export { StyledCart, StyledProduct, StyledImg, StyledDiv, StyledCloseButton, StyledClearButton, StyledH2, StyledLink }
+export { StyledSummary, StyledProduct, StyledImg, StyledDiv, StyledCloseButton, StyledClearButton, StyledH2, StyledLink }

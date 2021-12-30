@@ -14,6 +14,7 @@ const StyledParamsPanel = styled.div<ParamsPanelTypes>`
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    overflow: scroll;
 
     position: fixed;
     z-index: 3;
