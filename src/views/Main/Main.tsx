@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import paramsIMG from '../../assets/params.png'
 import { products } from '../../constans/db'
-import { ProductTile, P, Cart, ParamsPanel } from '../../components'
+import { ProductTile, P, ParamsPanel } from '../../components'
 import { StyledMain, StyledLink, StyledSpan, StyledDiv, StyledArrow, StyledProducts, StyledParamsDiv, StyledImg, StyledSort, StyledProductsFilterDiv } from './Main.css'
 
 interface ArrTypes {
@@ -92,12 +92,8 @@ const Main = () => {
 
 
     useEffect(() => {
-        fetch('http://localhost:3001/api/book', {
-            method: 'GET', // or 'PUT'
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            mode: 'cors',
+        fetch('/api/book', {
+            method: 'GET',
         })
             .then(response => response.json())
             .then(data => {
@@ -113,7 +109,6 @@ const Main = () => {
 
     return (
         <StyledMain>
-            <Cart />
 
             <StyledParamsDiv>
                 <P>

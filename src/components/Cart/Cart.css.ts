@@ -21,7 +21,7 @@ const StyledCart = styled.div<Types>`
     transform: ${({ isCartOpen }) => isCartOpen ? 'translateX(0)' : 'translateX(100%)'} ;
     transition: transform .5s;
     z-index: 2;
-    overflow: scroll;
+    overflow: auto;
     @media (${({ theme }) => theme.breakPoints.desktop}){
         top: 10vh;
         cursor: pointer;

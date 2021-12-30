@@ -2,6 +2,10 @@ import styled from 'styled-components'
 
 const StyledPayment = styled.section`
     margin-top: 15vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 
     @media (${({ theme }) => theme.breakPoints.desktop}){
         margin-top: 10vh;
@@ -27,4 +31,21 @@ const StyledButton = styled.button`
     }
 `;
 
-export { StyledPayment, StyledButton }
+const StyledInfo = styled.div`
+    width: 80%;
+    margin: 10px;
+    padding: 10px;
+    text-align: center;
+    background-color: ${({ theme }) => theme.colors.third};
+    font-size: ${({ theme }) => theme.fontSize.l};
+`;
+
+const StyledForm = styled.form`
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+`;
+
+export { StyledPayment, StyledButton, StyledForm, StyledInfo }

@@ -3,7 +3,6 @@ import { BrowserRouter } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import Router from '../Router';
 import { GlobalStyle, theme, ThemeProviderComponent } from '../style';
-import { Header } from '../components'
 import { CartProvider } from '../Context/context';
 
 function App() {

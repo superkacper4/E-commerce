@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
+import { H2, Input } from '../../components';
 import { useCart } from '../../Context/context';
-import { StyledPayment, StyledButton } from './Payment.css';
+import { StyledPayment, StyledButton, StyledForm, StyledInfo } from './Payment.css';
 
 interface OrderTypes {
     id: number;
@@ -15,10 +16,18 @@ interface InputTypes {
     order: OrderTypes[]
 }
 
+interface ErrorTypes {
+    message: string;
+}
+
+interface MessTypes {
+    data: undefined | InputTypes;
+    error: undefined | ErrorTypes;
+}
+
 const Payment = () => {
     const { cartContent } = useCart()
 
-    let orderArr = cartContent.map(product => ({ id: product.id, quantity: product.quantity }))
 
     const [inputValue, setInputValue] = useState<InputTypes>({
         first_name: '',
@@ -27,12 +36,14 @@ const Payment = () => {
         zip_code: '',
         order: []
     });
+    const [mess, setMess] = useState<MessTypes>()
 
     const sendData = () => {
-        console.log(orderArr)
-        setInputValue({ ...inputValue, order: orderArr })
-        fetch('http://localhost:3001/api/order', {
-            method: 'POST', // or 'PUT'
+        console.log(cartContent)
+
+        console.log(inputValue)
+        fetch('/api/order', {
+            method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
@@ -40,24 +51,29 @@ const Payment = () => {
         })
             .then(response => response.json())
             .then(data => {
+                setMess(data)
                 console.log('Success:', data);
             })
             .catch((error) => {
+                setMess(error.message)
                 console.error('Error:', error);
             });
     }
 
     return (
         <StyledPayment>
-            Payment
+            <H2>Payment</H2>
 
-            <form onSubmit={(e) => { e.preventDefault(); sendData() }}>
-                <input type='text' name='name' value={inputValue.first_name} onChange={(e: any) => setInputValue({ ...inputValue, first_name: e.target.value })} required min={4} />
-                <input type='text' name='surname' value={inputValue.last_name} onChange={(e: any) => setInputValue({ ...inputValue, last_name: e.target.value })} required min={5} />
-                <input type='text' name='city' value={inputValue.city} onChange={(e: any) => setInputValue({ ...inputValue, city: e.target.value })} required />
-                <input type='text' name='zip_code' value={inputValue.zip_code} onChange={(e: any) => setInputValue({ ...inputValue, zip_code: e.target.value })} pattern="\d{2}-\d{3}" required />
-                <StyledButton type='submit' > I order and pay </StyledButton>
-            </form>
+
+            <StyledForm onSubmit={(e) => { e.preventDefault(); sendData() }}>
+                <Input type='text' name='name' value={inputValue.first_name} onChange={(e: any) => setInputValue({ ...inputValue, first_name: e.target.value })} required min={4} placeholder='First name' />
+                <Input type='text' name='surname' value={inputValue.last_name} onChange={(e: any) => setInputValue({ ...inputValue, last_name: e.target.value })} required min={5} placeholder='Last name' />
+                <Input type='text' name='city' value={inputValue.city} onChange={(e: any) => setInputValue({ ...inputValue, city: e.target.value })} required placeholder='City' />
+                <Input type='text' name='zip_code' value={inputValue.zip_code} onChange={(e: any) => setInputValue({ ...inputValue, zip_code: e.target.value })} pattern="\d{2}-\d{3}" required placeholder='Zip code' />
+                <StyledButton type='submit' onClick={() => setInputValue({ ...inputValue, order: cartContent.map(product => ({ id: product.id, quantity: product.quantity })) })}> I order and pay </StyledButton>
+            </StyledForm>
+            {mess?.error?.message ? <StyledInfo>{mess.error.message}</StyledInfo> : null}
+            {mess?.data ? <StyledInfo>Success</StyledInfo> : null}
         </StyledPayment>
     )
 }

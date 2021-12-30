@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useCart } from '../../Context/context';
-import { H2, H3, H4 } from '..';
+import { H2, H3, H4, Input } from '..';
 import { StyledBestseller, StyledProductImage, StyledProductDivImage, StyledProductTile, StyledButton } from './ProductTile.css'
 
 interface BooksTypes {
@@ -59,7 +59,7 @@ const ProductTile = ({ title, id, price, author, cover_url, currency, pages }: B
             </H3>
             <H4>{pages} pages</H4>
             <H3>quantity</H3>
-            <input type='number' min={1} value={quantity} onChange={(e: any) => setQuantity(e.target.value)} placeholder='Quantity' />
+            <Input type='number' min={1} value={quantity} onChange={(e: any) => setQuantity(e.target.value)} placeholder='Quantity' />
         </StyledProductTile>
     )
 }

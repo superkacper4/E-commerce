@@ -33,6 +33,7 @@ const StyledParamsPanel = styled.div<ParamsPanelTypes>`
         left: 50%;
         transform: translateX(-50%);
         position: relative;
+        overflow: auto;
     }
 `;
 
