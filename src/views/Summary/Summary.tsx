@@ -28,6 +28,7 @@ const Summary = () => {
                                 })()}
                             </H3>
                             <H4>{product.pages} pages</H4>
+                            <H3>quantity: {product.quantity}</H3>
                         </StyledDiv>
                         <StyledImg src={product.cover_url} />
 

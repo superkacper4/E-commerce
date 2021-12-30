@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { Link } from "react-router-dom";
 import cartIMG from '../../assets/cart.png'
 
 const StyledHeader = styled.header`
@@ -21,8 +22,8 @@ const StyledHeader = styled.header`
 `;
 
 const StyledLogo = styled.img`
-    max-width: 50%;
-    max-height: 50%;
+    width: 100%;
+    max-height: 100%;
 `;
 
 const StyledCartButton = styled.button`
@@ -46,4 +47,12 @@ const StyledCounter = styled.div`
     right: 0;
 `;
 
-export { StyledHeader, StyledLogo, StyledCartButton, StyledCounter }
+const StyledLink = styled(Link)`
+    max-width: 50%;
+    height: 80%;
+    text-align:center;
+    display: flex;
+    align-items: center;
+`;
+
+export { StyledHeader, StyledLogo, StyledCartButton, StyledCounter, StyledLink }

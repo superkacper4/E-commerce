@@ -6,14 +6,14 @@ const StyledSummary = styled.div`
     min-height: 85vh;
     margin-top: 15vh;
     width: 100%;
-    border: 4px solid ${({ theme }) => theme.colors.third};
     background-color: ${({ theme }) => theme.colors.primary};
     padding: 15px;
     display: flex;
     flex-direction: column;
-    align-items: flex-end;
+    align-items: center;
 
     @media (${({ theme }) => theme.breakPoints.desktop}){
+        margin-top: 10vh;
         min-height: 90vh;
     }
 `;

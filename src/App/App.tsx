@@ -16,7 +16,6 @@ function App() {
           <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@100;400&display=swap" rel="stylesheet" />
         </Helmet>
         <GlobalStyle />
-        <Header />
         <Router />
       </CartProvider>
     </ThemeProviderComponent>

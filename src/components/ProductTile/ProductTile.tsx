@@ -15,6 +15,7 @@ interface BooksTypes {
 
 const ProductTile = ({ title, id, price, author, cover_url, currency, pages }: BooksTypes) => {
     const [isHover, setHover] = useState(false);
+    const [quantity, setQuantity] = useState<number>(1)
     const { setCartContent, cartContent, setCartOpen } = useCart()
 
     const addToCart = () => {
@@ -30,6 +31,7 @@ const ProductTile = ({ title, id, price, author, cover_url, currency, pages }: B
                 pages,
                 author,
                 id,
+                quantity
             }])
             setCartOpen(true)
         }
@@ -56,6 +58,8 @@ const ProductTile = ({ title, id, price, author, cover_url, currency, pages }: B
                 })()}
             </H3>
             <H4>{pages} pages</H4>
+            <H3>quantity</H3>
+            <input type='number' min={1} value={quantity} onChange={(e: any) => setQuantity(e.target.value)} placeholder='Quantity' />
         </StyledProductTile>
     )
 }

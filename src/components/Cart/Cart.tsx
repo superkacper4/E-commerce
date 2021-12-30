@@ -13,7 +13,6 @@ const Cart = () => {
     return (
         <StyledCart isCartOpen={isCartOpen}>
             <StyledCloseButton onClick={() => setCartOpen(false)}>X</StyledCloseButton>
-            {/* {cartContent ? <P>Koszyk pusty</P> : <P>xd</P>} */}
             {cartContent.map(product =>
                 <StyledProduct key={product.id}>
                     <StyledDiv>
@@ -36,6 +35,7 @@ const Cart = () => {
                 </StyledProduct>)}
             <StyledClearButton onClick={cleanCart}>Clear</StyledClearButton>
             <StyledLink to={'/summary'}>Summary</StyledLink>
+
 
         </StyledCart>
     )

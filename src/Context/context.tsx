@@ -13,6 +13,7 @@ interface CartObject {
     pages: number;
     price: number;
     currency: string;
+    quantity: number
 }
 
 interface CartTypes {
