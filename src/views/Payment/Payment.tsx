@@ -5,7 +5,6 @@ import { StyledPayment, StyledButton, StyledForm, StyledInfo } from './Payment.c
 
 interface OrderTypes {
     id: number;
-    quantity: number;
 }
 
 interface InputTypes {
@@ -70,7 +69,7 @@ const Payment = () => {
                 <Input type='text' name='surname' value={inputValue.last_name} onChange={(e: any) => setInputValue({ ...inputValue, last_name: e.target.value })} required min={5} placeholder='Last name' />
                 <Input type='text' name='city' value={inputValue.city} onChange={(e: any) => setInputValue({ ...inputValue, city: e.target.value })} required placeholder='City' />
                 <Input type='text' name='zip_code' value={inputValue.zip_code} onChange={(e: any) => setInputValue({ ...inputValue, zip_code: e.target.value })} pattern="\d{2}-\d{3}" required placeholder='Zip code' />
-                <StyledButton type='submit' onClick={() => setInputValue({ ...inputValue, order: cartContent.map(product => ({ id: product.id, quantity: product.quantity })) })}> I order and pay </StyledButton>
+                <StyledButton type='submit' onClick={() => setInputValue({ ...inputValue, order: cartContent.map(product => ({ id: product.id })) })}> I order and pay </StyledButton>
             </StyledForm>
             {mess?.error?.message ? <StyledInfo>{mess.error.message}</StyledInfo> : null}
             {mess?.data ? <StyledInfo>Success</StyledInfo> : null}

@@ -3,35 +3,37 @@ import { useCart } from '../../Context/context';
 import { H2, H3, H4, Input } from '..';
 import { StyledBestseller, StyledProductImage, StyledProductDivImage, StyledProductTile, StyledButton } from './ProductTile.css'
 
+interface CategoriesTypes {
+    id: string;
+    name: string;
+}
+
 interface BooksTypes {
     id: number;
-    title: string;
-    author: string;
-    cover_url: string;
+    name: string;
+    categories: CategoriesTypes[];
+    image: string;
     pages: number;
     price: number;
     currency: string;
 }
 
-const ProductTile = ({ title, id, price, author, cover_url, currency, pages }: BooksTypes) => {
+const ProductTile = ({ name, id, price, categories, image, currency }: BooksTypes) => {
     const [isHover, setHover] = useState(false);
-    const [quantity, setQuantity] = useState<number>(1)
     const { setCartContent, cartContent, setCartOpen } = useCart()
 
     const addToCart = () => {
-        if (cartContent.some(item => item.title === title)) {
+        if (cartContent.some(item => item.name === name)) {
             console.log('koszyk:', cartContent)
         }
         else {
             setCartContent([...cartContent, {
-                title,
+                name,
                 price,
-                cover_url,
+                image,
                 currency,
-                pages,
-                author,
+                categories,
                 id,
-                quantity
             }])
             setCartOpen(true)
         }
@@ -41,11 +43,13 @@ const ProductTile = ({ title, id, price, author, cover_url, currency, pages }: B
     return (
         <StyledProductTile onClick={() => setHover(true)} onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)}>
             <StyledProductDivImage>
-                <StyledProductImage src={cover_url} />
+                <StyledProductImage src={image} />
                 <StyledButton isHover={isHover} onClick={addToCart}>Add to cart</StyledButton>
             </StyledProductDivImage>
-            <H4>{author}</H4>
-            <H2>{title}</H2>
+            {categories.map(category => (
+                <H3 key={category.id} >{category.name}</H3>
+            ))}
+            <H2>{name}</H2>
             <H3>{price}
                 {(() => {
                     switch (currency) {
@@ -57,9 +61,6 @@ const ProductTile = ({ title, id, price, author, cover_url, currency, pages }: B
                     }
                 })()}
             </H3>
-            <H4>{pages} pages</H4>
-            <H3>quantity</H3>
-            <Input type='number' min={1} value={quantity} onChange={(e: any) => setQuantity(e.target.value)} placeholder='Quantity' />
         </StyledProductTile>
     )
 }

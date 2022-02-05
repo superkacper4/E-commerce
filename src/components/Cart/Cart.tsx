@@ -17,11 +17,11 @@ const Cart = () => {
     return (
         <StyledCart isCartOpen={isCartOpen}>
             <StyledCloseButton onClick={() => setCartOpen(false)}>X</StyledCloseButton>
-            {cartContent.map(product =>
+            {cartContent.length === 0 ? <H4>Cart is empty</H4> : cartContent.map(product =>
                 <StyledProduct key={product.id}>
                     <StyledDiv>
                         <StyledCloseButton type='button' onClick={() => removeProduct(product.id)} >X</StyledCloseButton>
-                        <StyledH2>{product.title}</StyledH2>
+                        <StyledH2>{product.name}</StyledH2>
                         <H3>{product.price}
                             {(() => {
                                 switch (product.currency) {
@@ -33,13 +33,15 @@ const Cart = () => {
                                 }
                             })()}
                         </H3>
-                        <H4>{product.pages} pages</H4>
                     </StyledDiv>
-                    <StyledImg src={product.cover_url} />
+                    <StyledImg src={product.image} />
 
                 </StyledProduct>)}
-            <StyledClearButton onClick={cleanCart}>Clear</StyledClearButton>
-            <StyledLink to={'/summary'}>Summary</StyledLink>
+            {cartContent.length === 0 ? null : <>
+                <StyledClearButton onClick={cleanCart}>Clear</StyledClearButton>
+                <StyledLink to={'/summary'}>Summary</StyledLink>
+            </>}
+
 
 
         </StyledCart>

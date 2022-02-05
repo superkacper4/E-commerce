@@ -6,7 +6,11 @@ import { StyledSummary, StyledProduct, StyledImg, StyledDiv, StyledCloseButton, 
 
 
 const Summary = () => {
-    const { cartContent } = useCart()
+    const { cartContent, setCartContent } = useCart()
+
+    const removeProduct = (id: number) => {
+        setCartContent(cartContent.filter(product => product.id !== id))
+    }
 
     return (
         <StyledSummary>
@@ -15,7 +19,8 @@ const Summary = () => {
                 {cartContent.map(product =>
                     <StyledProduct key={product.id}>
                         <StyledDiv>
-                            <StyledH2>{product.title}</StyledH2>
+                            <StyledCloseButton type='button' onClick={() => removeProduct(product.id)} >X</StyledCloseButton>
+                            <StyledH2>{product.name}</StyledH2>
                             <H3>{product.price}
                                 {(() => {
                                     switch (product.currency) {
@@ -27,14 +32,19 @@ const Summary = () => {
                                     }
                                 })()}
                             </H3>
-                            <H4>{product.pages} pages</H4>
-                            <H3>quantity: {product.quantity}</H3>
+
                         </StyledDiv>
-                        <StyledImg src={product.cover_url} />
+                        <StyledImg src={product.image} />
 
                     </StyledProduct>)}
             </div>
-            <StyledLink to={'/payment'}>Next</StyledLink>
+            <H3>
+                Summary: {cartContent.reduce((prev, current) => {
+                    return prev + +current.price
+                }, 0)} $
+            </H3>
+            {cartContent.length !== 0 ? <StyledLink to={'/payment'}>Next</StyledLink> : null}
+
         </StyledSummary>
     )
 }

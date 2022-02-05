@@ -4,46 +4,29 @@ import paramsIMG from '../../assets/params.png'
 import { ProductTile, P, ParamsPanel } from '../../components'
 import { StyledMain, StyledLink, StyledSpan, StyledDiv, StyledArrow, StyledProducts, StyledParamsDiv, StyledImg, StyledSort, StyledProductsFilterDiv } from './Main.css'
 
-interface ArrTypes {
-    name: string;
-    category: string;
-    price: number;
-    currency: string;
-    image: {
-        src: string;
-        alt: string;
-    };
-    bestseller: boolean;
-    featured: boolean;
-    details: null | {
-        dimmentions: {
-            width: number,
-            height: number
-        },
-        size: number,
-        description: string,
-        recommendations: { src: string; alt: string; }[]
-    };
-
-}
 
 interface PriceTypes {
     name: string;
     values: number[];
 }
 
-interface BooksTypes {
+interface CategoriesTypes {
+    id: string;
+    name: string;
+}
+
+interface ProductsTypes {
     id: number;
-    title: string;
-    author: string;
-    cover_url: string;
+    name: string;
+    categories: CategoriesTypes[];
+    image: string;
     pages: number;
     price: number;
     currency: string;
 }
 
 const Main = () => {
-    const [books, setBooks] = useState<BooksTypes[]>([])
+    const [products, setProducts] = useState<ProductsTypes[]>([])
     const [sortBy, setSortBy] = useState<string>('')
     const [isParamsPanelOpen, setParamsPanelOpen] = useState<boolean>(false)
     const [filterBy, setFilterBy] = useState<string[]>([])
@@ -53,7 +36,7 @@ const Main = () => {
 
     const { page } = useParams()
 
-    const sortArray = (a: BooksTypes, b: BooksTypes) => {
+    const sortArray = (a: ProductsTypes, b: ProductsTypes) => {
         if (sortBy === '') return 0;
         if (sortBy === 'price' && !sortDirection) {
             if (a.price >= b.price) return 1
@@ -66,36 +49,29 @@ const Main = () => {
             return 0
         }
         if (sortBy === 'alpha' && !sortDirection) {
-            if (a.title >= b.title) return 1
-            if (a.title < b.title) return -1
+            if (a.name >= b.name) return 1
+            if (a.name < b.name) return -1
             return 0
         }
         if (sortBy === 'alpha' && sortDirection) {
-            if (a.title >= b.title) return -1
-            if (a.title < b.title) return 1
+            if (a.name >= b.name) return -1
+            if (a.name < b.name) return 1
             return 0
         }
         return 0;
     }
 
-    const filterArr = (item: BooksTypes) => {
-        return !filterBy.length || filterBy.some((author) => {
-            return author === item.author
-        })
+    // const filterArr = (item: ProductsTypes) => {
+    //     return !filterBy.length || filterBy.some((category) => {
+    //         return category === item.category.name
+    //     })
+    // }
+
+    const filterArrByInput = (item: ProductsTypes) => {
+        return !filterByInput.length || item.name.toLowerCase().includes(filterByInput)
     }
 
-    const filterArrByInput = (item: BooksTypes) => {
-
-        return !filterByInput.length || item.title.toLowerCase().includes(filterByInput)
-
-
-        // return !filterByInput.length || books.some((book) => {
-        //     return filterByInput === book.title
-        // })
-
-    }
-
-    const priceRangeArr = (item: BooksTypes) => {
+    const priceRangeArr = (item: ProductsTypes) => {
         return !priceRange.length || priceRange.some((price) => {
             return item.price >= price.values[0] && item.price <= price.values[1]
         })
@@ -103,25 +79,29 @@ const Main = () => {
 
 
     useEffect(() => {
-        fetch('/api/book', {
-            method: 'GET',
-        })
-            .then(response => response.json())
-            .then(data => {
-                console.log('Success:', data.data);
-                setBooks(data.data)
-            })
-            .catch((error) => {
-                console.error('Error:', error);
-                setBooks([error])
-            });
 
         fetch('https://reasonapps-gql-api.vercel.app/api/graphql', {
-            method: 'GET',
+            method: 'POST',
+            body: JSON.stringify({
+                query: `{
+                  products {
+                    name
+                    id
+                    image
+                    price
+                    categories{
+                        id
+                        name
+                    }
+                    }
+                }`
+            })
         })
             .then(response => response.json())
             .then(data => {
-                console.log('Success:', data);
+                console.log('Success ql:', data.data.products);
+
+                setProducts(data.data.products)
 
             })
             .catch((error) => {
@@ -147,7 +127,7 @@ const Main = () => {
             <StyledProductsFilterDiv>
 
                 <ParamsPanel
-                    books={books}
+                    products={products}
                     isParamsPanelOpen={isParamsPanelOpen}
                     setParamsPanelOpen={setParamsPanelOpen}
                     setSortBy={setSortBy}
@@ -161,7 +141,7 @@ const Main = () => {
                     setFilterByInput={setFilterByInput}
                 />
                 <StyledProducts>
-                    {books.filter(filterArrByInput).filter(priceRangeArr).filter(filterArr).sort(sortArray).slice(Number(page) * 6, (1 + Number(page)) * 6).map((product) => {
+                    {products?.filter(filterArrByInput).filter(priceRangeArr).sort(sortArray).slice(Number(page) * 6, (1 + Number(page)) * 6).map((product) => {
 
                         return <ProductTile key={product.id} {...product} />
 
@@ -174,13 +154,13 @@ const Main = () => {
             <StyledDiv>
                 {Number(page) !== 0 ? <StyledArrow onClick={() => { window.scrollTo(0, 0) }} to={`/${Number(page) - 1}`} > {'<'} </StyledArrow> : null}
 
-                {[...Array(Math.ceil(books.filter(filterArrByInput).filter(priceRangeArr).filter(filterArr).length / 6))].map((e, i) => (
+                {[...Array(Math.ceil(products?.filter(filterArrByInput).filter(priceRangeArr).length / 6))].map((e, i) => (
                     <StyledLink to={`/${i}`} key={i}>
                         <StyledSpan onClick={() => window.scrollTo(0, 0)} isPage={Number(page) === i}>{i + 1}</StyledSpan>
                     </StyledLink>
                 ))}
 
-                {Number(page) !== [...Array(Math.ceil(books.filter(filterArrByInput).filter(priceRangeArr).filter(filterArr).length / 6))].length - 1 ? <StyledArrow onClick={() => { window.scrollTo(0, 0) }} to={`/${Number(page) + 1}`} > {'>'} </StyledArrow> : null}
+                {Number(page) !== [...Array(Math.ceil(products?.filter(filterArrByInput).filter(priceRangeArr).length / 6))].length - 1 ? <StyledArrow onClick={() => { window.scrollTo(0, 0) }} to={`/${Number(page) + 1}`} > {'>'} </StyledArrow> : null}
 
             </StyledDiv>
 
