@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import paramsIMG from '../../assets/params.png'
-import { products } from '../../constans/db'
 import { ProductTile, P, ParamsPanel } from '../../components'
 import { StyledMain, StyledLink, StyledSpan, StyledDiv, StyledArrow, StyledProducts, StyledParamsDiv, StyledImg, StyledSort, StyledProductsFilterDiv } from './Main.css'
 
@@ -104,6 +103,20 @@ const Main = () => {
                 console.error('Error:', error);
                 setBooks([error])
             });
+
+        fetch('https://reasonapps-gql-api.vercel.app/api/graphql', {
+            method: 'GET',
+        })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Success:', data);
+
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+
+
     }, [])
 
 

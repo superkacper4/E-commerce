@@ -10,12 +10,17 @@ const Cart = () => {
         setCartOpen(false)
     }
 
+    const removeProduct = (id: number) => {
+        setCartContent(cartContent.filter(product => product.id !== id))
+    }
+
     return (
         <StyledCart isCartOpen={isCartOpen}>
             <StyledCloseButton onClick={() => setCartOpen(false)}>X</StyledCloseButton>
             {cartContent.map(product =>
                 <StyledProduct key={product.id}>
                     <StyledDiv>
+                        <StyledCloseButton type='button' onClick={() => removeProduct(product.id)} >X</StyledCloseButton>
                         <StyledH2>{product.title}</StyledH2>
                         <H3>{product.price}
                             {(() => {

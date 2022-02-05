@@ -1,6 +1,5 @@
 import React, { SetStateAction, Dispatch } from 'react'
 import { StyledParamsPanel, StyledSort, StyledCloseButton, StyledInputDiv, StyledP } from './ParamsPanel.css'
-import { products } from '../../constans/db'
 
 interface PriceTypes {
     name: string;
