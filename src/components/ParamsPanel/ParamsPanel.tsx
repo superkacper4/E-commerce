@@ -1,4 +1,5 @@
 import React, { SetStateAction, Dispatch } from 'react'
+import { Input } from '..'
 import { StyledParamsPanel, StyledSort, StyledCloseButton, StyledInputDiv, StyledP } from './ParamsPanel.css'
 
 interface PriceTypes {
@@ -27,6 +28,8 @@ interface Types {
     setFilterBy: Dispatch<SetStateAction<string[]>>;
     priceRange: PriceTypes[];
     setPriceRange: Dispatch<SetStateAction<PriceTypes[]>>;
+    filterByInput: string;
+    setFilterByInput: Dispatch<SetStateAction<string>>;
 }
 
 const priceRangeArray = [
@@ -54,7 +57,7 @@ const priceRangeArray = [
     },
 ]
 
-const ParamsPanel = ({ books, sortDirection, setSortDirection, setSortBy, isParamsPanelOpen, setParamsPanelOpen, setFilterBy, filterBy, priceRange, setPriceRange }: Types) => {
+const ParamsPanel = ({ books, sortDirection, setSortDirection, setSortBy, isParamsPanelOpen, setParamsPanelOpen, setFilterBy, filterBy, priceRange, setPriceRange, filterByInput, setFilterByInput }: Types) => {
     const setFilter = (e: React.ChangeEvent<HTMLInputElement>) => {
         if (e.target.checked) setFilterBy([...filterBy, e.target.value])
 
@@ -94,6 +97,9 @@ const ParamsPanel = ({ books, sortDirection, setSortDirection, setSortBy, isPara
         <StyledParamsPanel isParamsPanelOpen={isParamsPanelOpen}>
             <StyledCloseButton onClick={() => { setParamsPanelOpen(false); console.log(isParamsPanelOpen) }}>x</StyledCloseButton>
             <StyledSort setSortBy={setSortBy} setSortDirection={setSortDirection} sortDirection={sortDirection} />
+
+            <StyledP>Title</StyledP>
+            <Input type='text' onChange={(e) => setFilterByInput(e.target.value)} value={filterByInput} placeholder='Title' />
 
             <StyledP>Authors</StyledP>
             {[...new Set(books.map(product => product.author))].map(author => (

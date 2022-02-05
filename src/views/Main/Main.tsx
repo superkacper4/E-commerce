@@ -47,6 +47,7 @@ const Main = () => {
     const [sortBy, setSortBy] = useState<string>('')
     const [isParamsPanelOpen, setParamsPanelOpen] = useState<boolean>(false)
     const [filterBy, setFilterBy] = useState<string[]>([])
+    const [filterByInput, setFilterByInput] = useState<string>('')
     const [priceRange, setPriceRange] = useState<PriceTypes[]>([])
     const [sortDirection, setSortDirection] = useState<boolean>(false)
 
@@ -81,6 +82,17 @@ const Main = () => {
         return !filterBy.length || filterBy.some((author) => {
             return author === item.author
         })
+    }
+
+    const filterArrByInput = (item: BooksTypes) => {
+
+        return !filterByInput.length || item.title.toLowerCase().includes(filterByInput)
+
+
+        // return !filterByInput.length || books.some((book) => {
+        //     return filterByInput === book.title
+        // })
+
     }
 
     const priceRangeArr = (item: BooksTypes) => {
@@ -133,9 +145,23 @@ const Main = () => {
             </StyledParamsDiv>
 
             <StyledProductsFilterDiv>
-                <ParamsPanel books={books} isParamsPanelOpen={isParamsPanelOpen} setParamsPanelOpen={setParamsPanelOpen} setSortBy={setSortBy} setSortDirection={setSortDirection} sortDirection={sortDirection} filterBy={filterBy} setFilterBy={setFilterBy} priceRange={priceRange} setPriceRange={setPriceRange} />
+
+                <ParamsPanel
+                    books={books}
+                    isParamsPanelOpen={isParamsPanelOpen}
+                    setParamsPanelOpen={setParamsPanelOpen}
+                    setSortBy={setSortBy}
+                    setSortDirection={setSortDirection}
+                    sortDirection={sortDirection}
+                    filterBy={filterBy}
+                    setFilterBy={setFilterBy}
+                    priceRange={priceRange}
+                    setPriceRange={setPriceRange}
+                    filterByInput={filterByInput}
+                    setFilterByInput={setFilterByInput}
+                />
                 <StyledProducts>
-                    {books.filter(priceRangeArr).filter(filterArr).sort(sortArray).slice(Number(page) * 6, (1 + Number(page)) * 6).map((product) => {
+                    {books.filter(filterArrByInput).filter(priceRangeArr).filter(filterArr).sort(sortArray).slice(Number(page) * 6, (1 + Number(page)) * 6).map((product) => {
 
                         return <ProductTile key={product.id} {...product} />
 
@@ -148,13 +174,13 @@ const Main = () => {
             <StyledDiv>
                 {Number(page) !== 0 ? <StyledArrow onClick={() => { window.scrollTo(0, 0) }} to={`/${Number(page) - 1}`} > {'<'} </StyledArrow> : null}
 
-                {[...Array(Math.ceil(books.filter(priceRangeArr).filter(filterArr).length / 6))].map((e, i) => (
+                {[...Array(Math.ceil(books.filter(filterArrByInput).filter(priceRangeArr).filter(filterArr).length / 6))].map((e, i) => (
                     <StyledLink to={`/${i}`} key={i}>
                         <StyledSpan onClick={() => window.scrollTo(0, 0)} isPage={Number(page) === i}>{i + 1}</StyledSpan>
                     </StyledLink>
                 ))}
 
-                {Number(page) !== [...Array(Math.ceil(books.filter(priceRangeArr).filter(filterArr).length / 6))].length - 1 ? <StyledArrow onClick={() => { window.scrollTo(0, 0) }} to={`/${Number(page) + 1}`} > {'>'} </StyledArrow> : null}
+                {Number(page) !== [...Array(Math.ceil(books.filter(filterArrByInput).filter(priceRangeArr).filter(filterArr).length / 6))].length - 1 ? <StyledArrow onClick={() => { window.scrollTo(0, 0) }} to={`/${Number(page) + 1}`} > {'>'} </StyledArrow> : null}
 
             </StyledDiv>
 
