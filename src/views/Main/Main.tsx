@@ -61,14 +61,16 @@ const Main = () => {
         return 0;
     }
 
-    // const filterArr = (item: ProductsTypes) => {
-    //     return !filterBy.length || filterBy.some((category) => {
-    //         return category === item.category.name
-    //     })
-    // }
+    const filterArr = (item: ProductsTypes) => {
+        return !filterBy.length || filterBy.every((author) => {
+            return item.categories.some(xd => {
+                return xd.name === author
+            })
+        })
+    }
 
     const filterArrByInput = (item: ProductsTypes) => {
-        return !filterByInput.length || item.name.toLowerCase().includes(filterByInput)
+        return !filterByInput.length || item.name.toLowerCase().includes(filterByInput.toLowerCase())
     }
 
     const priceRangeArr = (item: ProductsTypes) => {
@@ -141,7 +143,7 @@ const Main = () => {
                     setFilterByInput={setFilterByInput}
                 />
                 <StyledProducts>
-                    {products?.filter(filterArrByInput).filter(priceRangeArr).sort(sortArray).slice(Number(page) * 6, (1 + Number(page)) * 6).map((product) => {
+                    {products?.filter(filterArrByInput).filter(priceRangeArr).filter(filterArr).sort(sortArray).slice(Number(page) * 6, (1 + Number(page)) * 6).map((product) => {
 
                         return <ProductTile key={product.id} {...product} />
 
@@ -154,13 +156,13 @@ const Main = () => {
             <StyledDiv>
                 {Number(page) !== 0 ? <StyledArrow onClick={() => { window.scrollTo(0, 0) }} to={`/${Number(page) - 1}`} > {'<'} </StyledArrow> : null}
 
-                {[...Array(Math.ceil(products?.filter(filterArrByInput).filter(priceRangeArr).length / 6))].map((e, i) => (
+                {[...Array(Math.ceil(products?.filter(filterArrByInput).filter(priceRangeArr).filter(filterArr).length / 6))].map((e, i) => (
                     <StyledLink to={`/${i}`} key={i}>
                         <StyledSpan onClick={() => window.scrollTo(0, 0)} isPage={Number(page) === i}>{i + 1}</StyledSpan>
                     </StyledLink>
                 ))}
 
-                {Number(page) !== [...Array(Math.ceil(products?.filter(filterArrByInput).filter(priceRangeArr).length / 6))].length - 1 ? <StyledArrow onClick={() => { window.scrollTo(0, 0) }} to={`/${Number(page) + 1}`} > {'>'} </StyledArrow> : null}
+                {Number(page) !== [...Array(Math.ceil(products?.filter(filterArrByInput).filter(priceRangeArr).filter(filterArr).length / 6))].length - 1 ? <StyledArrow onClick={() => { window.scrollTo(0, 0) }} to={`/${Number(page) + 1}`} > {'>'} </StyledArrow> : null}
 
             </StyledDiv>
 
