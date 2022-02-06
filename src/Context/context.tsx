@@ -10,12 +10,11 @@ interface CategoriesTypes {
 }
 
 interface CartObject {
-    id: number;
+    id: string;
     name: string;
     categories: CategoriesTypes[];
     image: string;
     price: number;
-    currency: string;
 }
 
 interface CartTypes {

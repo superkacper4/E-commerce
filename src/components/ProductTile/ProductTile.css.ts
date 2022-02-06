@@ -18,6 +18,8 @@ const StyledProductTile = styled.div`
     margin: 10px 0;
     padding: 0;
     overflow: hidden;
+    text-decoration: none;
+    
 
     @media (${({ theme }) => theme.breakPoints.desktop}){
         margin: 10px;

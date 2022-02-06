@@ -10,7 +10,7 @@ const Cart = () => {
         setCartOpen(false)
     }
 
-    const removeProduct = (id: number) => {
+    const removeProduct = (id: string) => {
         setCartContent(cartContent.filter(product => product.id !== id))
     }
 
@@ -22,17 +22,7 @@ const Cart = () => {
                     <StyledDiv>
                         <StyledCloseButton type='button' onClick={() => removeProduct(product.id)} >X</StyledCloseButton>
                         <StyledH2>{product.name}</StyledH2>
-                        <H3>{product.price}
-                            {(() => {
-                                switch (product.currency) {
-
-                                    case 'EURO': return 'Є'
-                                    case "PLN": return 'PLN'
-
-                                    default: return '$'
-                                }
-                            })()}
-                        </H3>
+                        <H3>{product.price} </H3>
                     </StyledDiv>
                     <StyledImg src={product.image} />
 

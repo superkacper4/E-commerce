@@ -15,14 +15,13 @@ interface CategoriesTypes {
     name: string;
 }
 
-interface ProductsTypes {
-    id: number;
+interface ProductsTypes<T = number> {
+    id: string;
     name: string;
     categories: CategoriesTypes[];
     image: string;
     pages: number;
-    price: number;
-    currency: string;
+    price: T;
 }
 
 const Main = () => {
@@ -103,7 +102,11 @@ const Main = () => {
             .then(data => {
                 console.log('Success ql:', data.data.products);
 
-                setProducts(data.data.products)
+                setProducts(data.data.products.map((product: ProductsTypes<string>) => ({
+                    ...product,
+                    price: parseFloat(product.price)
+
+                })))
 
             })
             .catch((error) => {

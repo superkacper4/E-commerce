@@ -4,7 +4,7 @@ import { useCart } from '../../Context/context';
 import { StyledPayment, StyledButton, StyledForm, StyledInfo } from './Payment.css';
 
 interface OrderTypes {
-    id: number;
+    id: string;
 }
 
 interface InputTypes {

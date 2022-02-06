@@ -13,13 +13,12 @@ interface CategoriesTypes {
 }
 
 interface BooksTypes {
-    id: number;
+    id: string;
     name: string;
     categories: CategoriesTypes[];
     image: string;
     pages: number;
     price: number;
-    currency: string;
 }
 
 interface Types {

@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
 import { useCart } from '../../Context/context';
 import { H2, H3, H4, Input } from '..';
 import { StyledBestseller, StyledProductImage, StyledProductDivImage, StyledProductTile, StyledButton } from './ProductTile.css'
@@ -9,16 +10,15 @@ interface CategoriesTypes {
 }
 
 interface BooksTypes {
-    id: number;
+    id: string;
     name: string;
     categories: CategoriesTypes[];
     image: string;
     pages: number;
     price: number;
-    currency: string;
 }
 
-const ProductTile = ({ name, id, price, categories, image, currency }: BooksTypes) => {
+const ProductTile = ({ name, id, price, categories, image }: BooksTypes) => {
     const [isHover, setHover] = useState(false);
     const { setCartContent, cartContent, setCartOpen } = useCart()
 
@@ -31,7 +31,6 @@ const ProductTile = ({ name, id, price, categories, image, currency }: BooksType
                 name,
                 price,
                 image,
-                currency,
                 categories,
                 id,
             }])
@@ -41,7 +40,7 @@ const ProductTile = ({ name, id, price, categories, image, currency }: BooksType
 
 
     return (
-        <StyledProductTile onClick={() => setHover(true)} onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)}>
+        <StyledProductTile onClick={() => setHover(true)} onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)} as={Link} to={`product/${id}`}>
             <StyledProductDivImage>
                 <StyledProductImage src={image} />
                 <StyledButton isHover={isHover} onClick={addToCart}>Add to cart</StyledButton>
@@ -50,17 +49,7 @@ const ProductTile = ({ name, id, price, categories, image, currency }: BooksType
                 <H3 key={category.id} >{category.name}</H3>
             ))}
             <H2>{name}</H2>
-            <H3>{price}
-                {(() => {
-                    switch (currency) {
-
-                        case 'EURO': return 'Є'
-                        case "PLN": return 'PLN'
-
-                        default: return '$'
-                    }
-                })()}
-            </H3>
+            <H3>{price} </H3>
         </StyledProductTile>
     )
 }
