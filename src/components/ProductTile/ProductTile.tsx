@@ -1,15 +1,14 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
 import { useCart } from '../../Context/context';
 import { H2, H3, H4, Input } from '..';
-import { StyledBestseller, StyledProductImage, StyledProductDivImage, StyledProductTile, StyledButton } from './ProductTile.css'
+import { StyledLink, StyledProductImage, StyledProductDivImage, StyledProductTile, StyledButton } from './ProductTile.css'
 
 interface CategoriesTypes {
     id: string;
     name: string;
 }
 
-interface BooksTypes {
+interface ProductsTypes {
     id: string;
     name: string;
     categories: CategoriesTypes[];
@@ -18,7 +17,7 @@ interface BooksTypes {
     price: number;
 }
 
-const ProductTile = ({ name, id, price, categories, image }: BooksTypes) => {
+const ProductTile = ({ name, id, price, categories, image }: ProductsTypes) => {
     const [isHover, setHover] = useState(false);
     const { setCartContent, cartContent, setCartOpen } = useCart()
 
@@ -40,16 +39,18 @@ const ProductTile = ({ name, id, price, categories, image }: BooksTypes) => {
 
 
     return (
-        <StyledProductTile onClick={() => setHover(true)} onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)} as={Link} to={`product/${id}`}>
+        <StyledProductTile onClick={() => setHover(true)} onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)} >
             <StyledProductDivImage>
                 <StyledProductImage src={image} />
                 <StyledButton isHover={isHover} onClick={addToCart}>Add to cart</StyledButton>
             </StyledProductDivImage>
-            {categories.map(category => (
-                <H3 key={category.id} >{category.name}</H3>
-            ))}
-            <H2>{name}</H2>
-            <H3>{price} </H3>
+            <StyledLink to={`/product/${id}`}>
+                {categories.map(category => (
+                    <H3 key={category.id} >{category.name}</H3>
+                ))}
+                <H2>{name}</H2>
+                <H3>{price} $</H3>
+            </StyledLink>
         </StyledProductTile>
     )
 }

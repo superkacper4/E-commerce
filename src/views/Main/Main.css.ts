@@ -77,6 +77,7 @@ const StyledDiv = styled.div`
     margin: 0;
     padding: 0;
     display: flex;
+    flex-wrap:wrap;
     justify-content: center;
 `;
 

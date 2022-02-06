@@ -27,7 +27,6 @@ const Product = () => {
     const { id } = useParams()
     const { cartContent, setCartContent, setCartOpen } = useCart()
 
-    if (!product) return null;
 
     useEffect(() => {
         fetch('https://reasonapps-gql-api.vercel.app/api/graphql', {
@@ -50,9 +49,6 @@ const Product = () => {
         })
             .then(response => response.json())
             .then(data => {
-                console.log('Success ql:', data.data.products);
-
-                // console.log(data.data.products.find((product: ProductsTypes<string>) => product.id === id))
 
                 setProduct(data.data.products.find((product: ProductsTypes<string>) => product.id === id))
 
@@ -62,6 +58,8 @@ const Product = () => {
             });
 
     }, [])
+
+    if (!product) return null;
 
     const addToCart = () => {
         if (cartContent.some(item => item.name === product?.name)) {
@@ -89,7 +87,7 @@ const Product = () => {
                 <StyledDiv>
 
                     {product?.categories.map(category =>
-                        <H3>
+                        <H3 key={category.id}>
                             {category.name}
                         </H3>
                     )}

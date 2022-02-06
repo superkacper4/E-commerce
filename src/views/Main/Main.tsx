@@ -100,7 +100,6 @@ const Main = () => {
         })
             .then(response => response.json())
             .then(data => {
-                console.log('Success ql:', data.data.products);
 
                 setProducts(data.data.products.map((product: ProductsTypes<string>) => ({
                     ...product,
@@ -122,7 +121,7 @@ const Main = () => {
 
             <StyledParamsDiv>
                 <P>
-                    Books / <StyledSpan isPage={false}>Premium books</StyledSpan>
+                    Products / <StyledSpan isPage={false}>Premium products</StyledSpan>
                 </P>
                 <StyledImg src={paramsIMG} alt="Params" onClick={() => setParamsPanelOpen(true)} />
                 <StyledSort setSortBy={setSortBy} setSortDirection={setSortDirection} sortDirection={sortDirection} />

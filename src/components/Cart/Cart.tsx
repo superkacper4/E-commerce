@@ -22,7 +22,7 @@ const Cart = () => {
                     <StyledDiv>
                         <StyledCloseButton type='button' onClick={() => removeProduct(product.id)} >X</StyledCloseButton>
                         <StyledH2>{product.name}</StyledH2>
-                        <H3>{product.price} </H3>
+                        <H3>{product.price} $</H3>
                     </StyledDiv>
                     <StyledImg src={product.image} />
 

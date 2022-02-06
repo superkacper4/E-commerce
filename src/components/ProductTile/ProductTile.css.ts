@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { Link } from 'react-router-dom'
 
 interface ButtonTypes {
     isHover: boolean
@@ -47,16 +48,6 @@ const StyledProductImage = styled.div`
     background-repeat: no-repeat;
 `;
 
-const StyledBestseller = styled.div`
-    min-width: 40%;
-    position : absolute;
-    left: 0;
-    top: 0;
-    padding: 5px;
-    text-align: center;
-    background-color: ${({ theme }) => theme.colors.primary};
-    transform: ${({ bestseller }: BestsellerTypes) => bestseller ? "scale(1)" : "scale(0)"} ;
-`;
 
 const StyledButton = styled.button`
     width: 100%;
@@ -80,4 +71,9 @@ const StyledButton = styled.button`
     }
 `;
 
-export { StyledBestseller, StyledProductImage, StyledProductDivImage, StyledProductTile, StyledButton }
+const StyledLink = styled(Link)`
+    text-decoration: none;
+
+`;
+
+export { StyledProductImage, StyledProductDivImage, StyledProductTile, StyledButton, StyledLink }

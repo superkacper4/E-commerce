@@ -12,7 +12,7 @@ interface CategoriesTypes {
     name: string;
 }
 
-interface BooksTypes {
+interface ProductsTypes {
     id: string;
     name: string;
     categories: CategoriesTypes[];
@@ -22,7 +22,7 @@ interface BooksTypes {
 }
 
 interface Types {
-    products: BooksTypes[];
+    products: ProductsTypes[];
     setSortDirection: Dispatch<SetStateAction<boolean>>;
     setSortBy: Dispatch<SetStateAction<string>>;
     sortDirection: boolean;
