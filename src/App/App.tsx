@@ -11,7 +11,7 @@ function App() {
       <CartProvider>
         <Helmet>
           <meta charSet="utf-8" />
-          <title>Nextrope</title>
+          <title>ReasonApps</title>
           <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@100;400&display=swap" rel="stylesheet" />
         </Helmet>
         <GlobalStyle />
