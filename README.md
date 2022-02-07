@@ -1,4 +1,4 @@
-# Nextrope e-commerce
+# e-commerce
 
 ## Technologies
 * React

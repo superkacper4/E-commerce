@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { useCart } from '../../Context/context'
 import { H3, P } from '../../components'
-import { StyledProduct, StyledTile, StyledDiv, StyledImg, StyledH2, StyledButton } from './Product.css'
+import { StyledProduct, StyledTile, StyledDiv, StyledImg, StyledH2, StyledButton, StyledLink } from './Product.css'
 
 interface CategoriesTypes {
     id: string;
@@ -24,7 +24,7 @@ interface ProductsTypes<T = number> {
 const Product = () => {
     const [product, setProduct] = useState<ProductsTypes | undefined>()
 
-    const { id } = useParams()
+    const { id, page } = useParams()
     const { cartContent, setCartContent, setCartOpen } = useCart()
 
 
@@ -79,6 +79,7 @@ const Product = () => {
 
     return (
         <StyledProduct>
+            <StyledLink to={`/${page}`}>Back to products</StyledLink>
             <StyledTile>
                 <StyledH2>
                     {product?.name}

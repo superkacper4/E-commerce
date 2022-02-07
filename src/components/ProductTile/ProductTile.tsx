@@ -44,7 +44,7 @@ const ProductTile = ({ name, id, price, categories, image }: ProductsTypes) => {
                 <StyledProductImage src={image} />
                 <StyledButton isHover={isHover} onClick={addToCart}>Add to cart</StyledButton>
             </StyledProductDivImage>
-            <StyledLink to={`/product/${id}`}>
+            <StyledLink to={`product/${id}`}>
                 {categories.map(category => (
                     <H3 key={category.id} >{category.name}</H3>
                 ))}

@@ -1,10 +1,11 @@
 import styled from 'styled-components'
+import { Link } from 'react-router-dom'
 import { H2 } from '../../components'
 
 
 const StyledProduct = styled.section`
     margin-top: 15vh;
-    padding: 0 10px; 
+    padding: 0 10px 10px 10px ; 
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -19,8 +20,7 @@ const StyledProduct = styled.section`
 
 const StyledTile = styled.div`
     width: 100%;
-    padding: 5px;
-    margin: 10px 0;
+    padding: 0 10px 10px 10px ; 
     display: flex;
     flex-direction: row;
     flex-wrap:wrap;
@@ -75,5 +75,14 @@ const StyledButton = styled.button`
         }
     }
 `
+const StyledLink = styled(Link)`
+    width: 100%;
+    text-align: left;
+    text-decoration: none;
+    color: ${({ theme }) => theme.colors.text};
+    font-size: 15px;
+    margin: 5px;
+`;
 
-export { StyledProduct, StyledTile, StyledDiv, StyledImg, StyledH2, StyledButton }
+
+export { StyledProduct, StyledTile, StyledDiv, StyledImg, StyledH2, StyledButton, StyledLink }
